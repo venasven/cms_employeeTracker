@@ -1,3 +1,10 @@
+DROP DATABASE IF EXISTS employee_tracker;
+
+CREATE DATABASE employee_tracker;
+
+USE employee_tracker;
+
+
 DROP TABLE IF EXISTS employee;
 
 DROP TABLE IF EXISTS role;

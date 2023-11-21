@@ -9,7 +9,7 @@ const db = mysql.createConnection({
 });
 
 db.on('error', (err) => {
-    console.log('- Connection error!', err);
+    console.log('- STATS MYsql2 connection died:', err);
 });
 
 module.exports = db;
