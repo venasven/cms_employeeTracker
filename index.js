@@ -70,7 +70,7 @@ async function viewDeparts() {
 
 async function viewRoles() {
     try {
-      const sql = 'SELECT id, title AS "role_title", salary FROM role';
+      const sql = 'SELECT role.id, role.title AS "role_title", role.salary, department.name AS "department_name" FROM role JOIN department ON role.department_id = department.id';
       const results = await db.query(sql);
       console.table(results);
       startApp();
@@ -82,7 +82,7 @@ async function viewRoles() {
 
   async function viewEmploys() {
     try {
-      const sql = 'SELECT id, first_name, last_name, role_id FROM employee';
+      const sql = 'SELECT employee.id, first_name, last_name,role.title, role.salary FROM employee JOIN role ON employee.role_id = role.id';
       const results = await db.query(sql);
       console.table(results);
       startApp();
@@ -97,13 +97,13 @@ async function viewRoles() {
         const department = await inquirer.prompt([
           {
             type: 'input',
-            name: 'depart',
+            name: 'name',
             message: 'Enter new Department:',
           },
         ]);
     
-        const sql = 'INSERT INTO department (name) VALUES (:name)';
-        await db.query(sql, { name: department.depart });
+        const sql = 'INSERT INTO department (name) VALUES (name)';
+        await db.query(sql, [department.name]);
     
         console.log('Department added.');
         startApp();
@@ -122,7 +122,7 @@ async function addRole(){
             message: 'Enter new Role:',
           },
         ]);
-        const sql = 'INSERT INTO role (name) VALUES (?)';
+        const sql = 'INSERT INTO role (title) VALUES (?)';
         await db.query(sql, [role.role]);
     
         console.log('Role added.');
