@@ -122,7 +122,7 @@ async function addRole(){
             message: 'Enter new Role:',
           },
         ]);
-        const sql = 'INSERT INTO role (title) VALUES (?)';
+        const sql = 'INSERT INTO role (title) VALUES (title)';
         await db.query(sql, [role.role]);
     
         console.log('Role added.');
@@ -142,7 +142,7 @@ async function addEmploy() {
             message: 'Enter the Employee Name:',
           },
         ]);
-        const sql = 'INSERT INTO employee (first_name, last_name) VALUES (? ?)';
+        const sql = 'INSERT INTO employee (first_name, last_name) VALUES (first_name, last_name)';
         await db.query(sql, [employee.employ]);
     
         console.log('Employee added.');
